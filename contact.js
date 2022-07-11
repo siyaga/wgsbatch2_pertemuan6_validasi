@@ -21,6 +21,26 @@ if(!fs.existsSync(dataPath)){
 }
 }
 
+function validasiEmail (email){
+  if(!validator.isEmail(email)){
+    return console.log("Email yang anda Masukan Salah!, Pastikan Format email sesuai.");
+  }else {
+    console.log("Email yang anda masukan benar");
+  }
+  
+
+}
+
+function validasiMobile(mobile){
+  if(!validator.isMobilePhone(mobile, 'id-ID')){
+    return console.log("Nomor Telephone Yang anda Masukan Salah!!, Pastikan Format nomor sesuai.");
+  
+  } else {
+    console.log("Nomor yang anda masukan Benar");
+  }
+  
+}
+
 //Simpan Data
 const saveIsiData = (name,mobile,email) => {
 periksaFolder();
@@ -33,15 +53,9 @@ const contacts =JSON.parse(file);
 const namaDuplikat = contacts.find((contact) => contact.name.toLowerCase() === name.toLowerCase());
 
 //Menambahkan validasi untuk nomor telephone
-if(!validator.isMobilePhone(mobile, 'id-ID')){
-  return console.log("Nomor Telephone Yang anda Masukan Salah!!, Pastikan Format nomor sesuai.");
-
-}else
+validasiMobile(mobile);
 //Menambahkan validasi untuk email
-if(!validator.isEmail(email)){
-  return console.log("Email yang anda Masukan Salah!, Pastikan Format email sesuai.");
-}
-
+validasiEmail(email);
 
 if(namaDuplikat){
     //Menampilkan jika nilai true bila sama namanya maka munculkan nama sudah digunakan
